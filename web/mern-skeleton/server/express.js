@@ -7,10 +7,12 @@ import helmet from 'helmet'
 import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import path from 'path'
 // import { Template } from 'webpack'
 
 
 const app = express()
+const current_working_dir = process.cwd()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -36,6 +38,7 @@ app.use((err, req, res, next) => {
     }
 })
 
+app.use('/dist', express.static(path.join(current_working_dir, 'dist')))
 
 export default app
 

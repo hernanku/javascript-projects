@@ -1,6 +1,7 @@
 import config from './../config/config'
 import app from './express'
 import mongoose from 'mongoose'
+import devBundle from './devBundle'
 
 
 
@@ -17,4 +18,6 @@ mongoose.connect(config.mongoUri, {useNewUrlParser: true, useUnifiedTopology: tr
 mongoose.connection.on('error', () => {
     throw new Error(`unable to connect to database: ${config.mongoUri}`)
 })
+
+devBundle.compile(app)
 
